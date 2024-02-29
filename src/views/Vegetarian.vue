@@ -3,61 +3,53 @@
     <h1>Lunch</h1>
 
     <div class="card-horizontal">
-      <div class="card">
-        <img class="card-img-top" src="/pesto.png" alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Lemon & Greens Pesto Pasta</h5>
-          <p class="card-text">
-            Prep, cook and serve this quick and easy lemon and green veg pasta
-            in just 15 minutes. It's perfect for busy days, and will be loved by
-            the whole family..
-          </p>
-          <a
-            href="https://www.bbcgoodfood.com/recipes/lemon-greens-pesto-pasta"
-            class="btn btn-primary"
-            >Go somewhere</a
-          >
-        </div>
-      </div>
-      <div class="card">
+      <div v-for="(recipe, index) in recipes" :key="index" class="card">
         <img
+          :src="recipe.image"
           class="card-img-top"
-          src="/caponata pasta.png"
-          alt="Card image cap"
+          :alt="recipe.title + ' image'"
         />
         <div class="card-body">
-          <h5 class="card-title">Caponata Pasta</h5>
-          <p class="card-text">
-            Whip up our easy vegetarian caponata pasta in just 20 minutes. It's
-            simple to make, budget-friendly and packs three of your five-a-day
-            into one delicious meal
-          </p>
-          <a
-            href="https://www.bbcgoodfood.com/recipes/caponata-pasta"
-            class="btn btn-primary"
-            >Go somewhere</a
-          >
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="/herby.png" alt="Card image cap" />
-        <div class="card-body">
-          <h5 class="card-title">Herby warm cucumbers with lemon</h5>
-          <p class="card-text">
-            Did you know that warming up cucumbers enhances their fresh flavour?
-            To finish, all this summer side dish needs is a sprinkling of fresh
-            dill and parsley, plus lemon.
-          </p>
-          <a
-            href="https://www.bbcgoodfood.com/recipes/herby-warm-cucumbers-with-lemon"
-            class="btn btn-primary"
-            >Go somewhere</a
-          >
+          <h5 class="card-title">{{ recipe.title }}</h5>
+          <p class="card-text">{{ recipe.description }}</p>
+          <a :href="recipe.link" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      recipes: [
+        {
+          title: "Lemon & Greens Pesto Pasta",
+          image: "/pesto.png",
+          description:
+            "Prep, cook and serve this quick and easy lemon and green veg pasta in just 15 minutes. It's perfect for busy days, and will be loved by the whole family.",
+          link: "https://www.bbcgoodfood.com/recipes/lemon-greens-pesto-pasta",
+        },
+        {
+          title: "Caponata Pasta",
+          image: "/caponata pasta.png",
+          description:
+            "Whip up our easy vegetarian caponata pasta in just 20 minutes. It's simple to make, budget-friendly and packs three of your five-a-day into one delicious meal",
+          link: "https://www.bbcgoodfood.com/recipes/caponata-pasta",
+        },
+        {
+          title: "Herby warm cucumbers with lemon",
+          image: "/herby.png",
+          description:
+            "Did you know that warming up cucumbers enhances their fresh flavour? To finish, all this summer side dish needs is a sprinkling of fresh dill and parsley, plus lemon.",
+          link: "https://www.bbcgoodfood.com/recipes/herby-warm-cucumbers-with-lemon",
+        },
+      ],
+    };
+  },
+};
+</script>
 
 <style scoped>
 /* Styles for the h1 */
@@ -94,14 +86,10 @@ h1 {
   height: 400px;
   align-content: center;
   border-radius: 15px;
-  /* border-top-left-radius: 5px;
-  border-top-right-radius: 5px; */
 }
 
 .card-body {
   padding: 10px;
-
-  /* background-color: #333; */
 }
 
 .card-title {
